@@ -3,21 +3,21 @@ services:
         - docker
 
 before_install:
-        - docker build -t andreisimi/react-test -f ./client/Dockerfile.dev ./client
+        - docker build -t andreisimi96vs96vs/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-        - docker run -e CI=true andreisimi/react-test npm test
+        - docker run -e CI=true andreisimi96vs/react-test npm test
 
 after_success:
-        - docker build -t andreisimi/multi-client ./client
-        - docker build -t andreisimi/multi-nginx ./nginx
-        - docker build -t andreisimi/multi-server ./server
-        - docker build -t andreisimi/multi-worker ./worker
+        - docker build -t andreisimi96vs/multi-client ./client
+        - docker build -t andreisimi96vs/multi-nginx ./nginx
+        - docker build -t andreisimi96vs/multi-server ./server
+        - docker build -t andreisimi96vs/multi-worker ./worker
         # Log in to the docker CLI
         - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
-        - docker push andreisimi/multi-client
-        - docker push andreisimi/multi-nginx
-        - docker push andreisimi/multi-server
-        - docker push andreisimi/multi-worker
+        - docker push andreisimi96vs/multi-client
+        - docker push andreisimi96vs/multi-nginx
+        - docker push andreisimi96vs/multi-server
+        - docker push andreisimi96vs/multi-worker
 
         # Take those images and push them to docker hub :')
